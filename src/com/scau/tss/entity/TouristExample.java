@@ -443,6 +443,136 @@ public class TouristExample {
             addCriterion("phone_number not between", value1, value2, "phoneNumber");
             return (Criteria) this;
         }
+
+        public Criteria andRegisterTypeIsNull() {
+            addCriterion("register_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeIsNotNull() {
+            addCriterion("register_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeEqualTo(String value) {
+            addCriterion("register_type =", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeNotEqualTo(String value) {
+            addCriterion("register_type <>", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeGreaterThan(String value) {
+            addCriterion("register_type >", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("register_type >=", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeLessThan(String value) {
+            addCriterion("register_type <", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeLessThanOrEqualTo(String value) {
+            addCriterion("register_type <=", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeLike(String value) {
+            addCriterion("register_type like", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeNotLike(String value) {
+            addCriterion("register_type not like", value, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeIn(List<String> values) {
+            addCriterion("register_type in", values, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeNotIn(List<String> values) {
+            addCriterion("register_type not in", values, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeBetween(String value1, String value2) {
+            addCriterion("register_type between", value1, value2, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegisterTypeNotBetween(String value1, String value2) {
+            addCriterion("register_type not between", value1, value2, "registerType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedIsNull() {
+            addCriterion("deleted is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedIsNotNull() {
+            addCriterion("deleted is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedEqualTo(Byte value) {
+            addCriterion("deleted =", value, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedNotEqualTo(Byte value) {
+            addCriterion("deleted <>", value, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedGreaterThan(Byte value) {
+            addCriterion("deleted >", value, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedGreaterThanOrEqualTo(Byte value) {
+            addCriterion("deleted >=", value, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedLessThan(Byte value) {
+            addCriterion("deleted <", value, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedLessThanOrEqualTo(Byte value) {
+            addCriterion("deleted <=", value, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedIn(List<Byte> values) {
+            addCriterion("deleted in", values, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedNotIn(List<Byte> values) {
+            addCriterion("deleted not in", values, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedBetween(Byte value1, Byte value2) {
+            addCriterion("deleted between", value1, value2, "deleted");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeletedNotBetween(Byte value1, Byte value2) {
+            addCriterion("deleted not between", value1, value2, "deleted");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

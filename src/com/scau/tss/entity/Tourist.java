@@ -11,6 +11,10 @@ public class Tourist {
 
     private String phoneNumber;
 
+    private String registerType;
+
+    private Byte deleted;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +53,21 @@ public class Tourist {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
+    }
+
+    public String getRegisterType() {
+        return registerType;
+    }
+
+    public void setRegisterType(String registerType) {
+        this.registerType = registerType == null ? null : registerType.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 }

@@ -10,6 +10,7 @@
     <result column="releaser_id" property="releaserId" jdbcType="VARCHAR" />
     <result column="types" property="types" jdbcType="VARCHAR" />
     <result column="examine_id" property="examineId" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, release_time, context, title, dead_line, releaser_id, types, examine_id
+    id, release_time, context, title, dead_line, releaser_id, types, examine_id, deleted
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.EmergencyExample" >
     select
@@ -105,10 +106,12 @@
   <insert id="insert" parameterType="com.scau.tss.entity.Emergency" >
     insert into emergency (id, release_time, context, 
       title, dead_line, releaser_id, 
-      types, examine_id)
+      types, examine_id, deleted
+      )
     values (#{id,jdbcType=INTEGER}, #{releaseTime,jdbcType=DATE}, #{context,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{deadLine,jdbcType=DATE}, #{releaserId,jdbcType=VARCHAR}, 
-      #{types,jdbcType=VARCHAR}, #{examineId,jdbcType=VARCHAR})
+      #{types,jdbcType=VARCHAR}, #{examineId,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Emergency" >
     insert into emergency
@@ -137,6 +140,9 @@
       <if test="examineId != null" >
         examine_id,
       </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +168,9 @@
       </if>
       <if test="examineId != null" >
         #{examineId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -198,6 +207,9 @@
       <if test="record.examineId != null" >
         examine_id = #{record.examineId,jdbcType=VARCHAR},
       </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +224,8 @@
       dead_line = #{record.deadLine,jdbcType=DATE},
       releaser_id = #{record.releaserId,jdbcType=VARCHAR},
       types = #{record.types,jdbcType=VARCHAR},
-      examine_id = #{record.examineId,jdbcType=VARCHAR}
+      examine_id = #{record.examineId,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +254,9 @@
       <if test="examineId != null" >
         examine_id = #{examineId,jdbcType=VARCHAR},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,7 +268,8 @@
       dead_line = #{deadLine,jdbcType=DATE},
       releaser_id = #{releaserId,jdbcType=VARCHAR},
       types = #{types,jdbcType=VARCHAR},
-      examine_id = #{examineId,jdbcType=VARCHAR}
+      examine_id = #{examineId,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

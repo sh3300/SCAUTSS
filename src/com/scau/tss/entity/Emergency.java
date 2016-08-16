@@ -19,6 +19,8 @@ public class Emergency {
 
     private String examineId;
 
+    private Byte deleted;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class Emergency {
 
     public void setExamineId(String examineId) {
         this.examineId = examineId == null ? null : examineId.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 }

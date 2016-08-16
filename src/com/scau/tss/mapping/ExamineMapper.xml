@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="examiner_id" property="examinerId" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.Examine" extends="BaseResultMap" >
     <result column="command" property="command" jdbcType="LONGVARCHAR" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, examiner_id, state
+    id, examiner_id, state, deleted
   </sql>
   <sql id="Blob_Column_List" >
     command
@@ -123,9 +124,9 @@
   </delete>
   <insert id="insert" parameterType="com.scau.tss.entity.Examine" >
     insert into examine (id, examiner_id, state, 
-      command)
+      deleted, command)
     values (#{id,jdbcType=INTEGER}, #{examinerId,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
-      #{command,jdbcType=LONGVARCHAR})
+      #{deleted,jdbcType=TINYINT}, #{command,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Examine" >
     insert into examine
@@ -138,6 +139,9 @@
       </if>
       <if test="state != null" >
         state,
+      </if>
+      <if test="deleted != null" >
+        deleted,
       </if>
       <if test="command != null" >
         command,
@@ -152,6 +156,9 @@
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
       </if>
       <if test="command != null" >
         #{command,jdbcType=LONGVARCHAR},
@@ -176,6 +183,9 @@
       <if test="record.state != null" >
         state = #{record.state,jdbcType=VARCHAR},
       </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
       <if test="record.command != null" >
         command = #{record.command,jdbcType=LONGVARCHAR},
       </if>
@@ -189,6 +199,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       examiner_id = #{record.examinerId,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=TINYINT},
       command = #{record.command,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -198,7 +209,8 @@
     update examine
     set id = #{record.id,jdbcType=INTEGER},
       examiner_id = #{record.examinerId,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=VARCHAR}
+      state = #{record.state,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,6 +224,9 @@
       <if test="state != null" >
         state = #{state,jdbcType=VARCHAR},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
       <if test="command != null" >
         command = #{command,jdbcType=LONGVARCHAR},
       </if>
@@ -222,13 +237,15 @@
     update examine
     set examiner_id = #{examinerId,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=TINYINT},
       command = #{command,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Examine" >
     update examine
     set examiner_id = #{examinerId,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR}
+      state = #{state,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

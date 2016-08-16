@@ -25,6 +25,8 @@ public class Complaint {
 
     private Integer filesId;
 
+    private Byte deleted;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class Complaint {
 
     public void setFilesId(Integer filesId) {
         this.filesId = filesId;
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 }

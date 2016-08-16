@@ -9,6 +9,14 @@ public class Room {
 
     private Integer price;
 
+    private Integer hotelId;
+
+    private Integer roomNumber;
+
+    private String state;
+
+    private Byte deleted;
+
     private String description;
 
     public Integer getId() {
@@ -41,6 +49,38 @@ public class Room {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 
     public String getDescription() {

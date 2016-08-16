@@ -11,6 +11,8 @@ public class Manager {
 
     private String state;
 
+    private Byte deleted;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Manager {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 }

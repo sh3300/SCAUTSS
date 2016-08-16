@@ -7,6 +7,8 @@ public class Examine {
 
     private String state;
 
+    private Byte deleted;
+
     private String command;
 
     public Integer getId() {
@@ -31,6 +33,14 @@ public class Examine {
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 
     public String getCommand() {

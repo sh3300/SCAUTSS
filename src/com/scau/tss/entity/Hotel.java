@@ -15,6 +15,8 @@ public class Hotel {
 
     private Integer roomNumber;
 
+    private Byte deleted;
+
     private String position;
 
     public Integer getId() {
@@ -63,6 +65,14 @@ public class Hotel {
 
     public void setRoomNumber(Integer roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 
     public String getPosition() {

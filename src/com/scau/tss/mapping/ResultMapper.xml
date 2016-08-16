@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="times" property="times" jdbcType="DATE" />
     <result column="files_id" property="filesId" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.Result" extends="BaseResultMap" >
     <result column="context" property="context" jdbcType="LONGVARCHAR" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, times, files_id
+    id, times, files_id, deleted
   </sql>
   <sql id="Blob_Column_List" >
     context
@@ -123,9 +124,9 @@
   </delete>
   <insert id="insert" parameterType="com.scau.tss.entity.Result" >
     insert into result (id, times, files_id, 
-      context)
+      deleted, context)
     values (#{id,jdbcType=INTEGER}, #{times,jdbcType=DATE}, #{filesId,jdbcType=INTEGER}, 
-      #{context,jdbcType=LONGVARCHAR})
+      #{deleted,jdbcType=TINYINT}, #{context,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Result" >
     insert into result
@@ -138,6 +139,9 @@
       </if>
       <if test="filesId != null" >
         files_id,
+      </if>
+      <if test="deleted != null" >
+        deleted,
       </if>
       <if test="context != null" >
         context,
@@ -152,6 +156,9 @@
       </if>
       <if test="filesId != null" >
         #{filesId,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
       </if>
       <if test="context != null" >
         #{context,jdbcType=LONGVARCHAR},
@@ -176,6 +183,9 @@
       <if test="record.filesId != null" >
         files_id = #{record.filesId,jdbcType=INTEGER},
       </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
       <if test="record.context != null" >
         context = #{record.context,jdbcType=LONGVARCHAR},
       </if>
@@ -189,6 +199,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
       files_id = #{record.filesId,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=TINYINT},
       context = #{record.context,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -198,7 +209,8 @@
     update result
     set id = #{record.id,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
-      files_id = #{record.filesId,jdbcType=INTEGER}
+      files_id = #{record.filesId,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,6 +224,9 @@
       <if test="filesId != null" >
         files_id = #{filesId,jdbcType=INTEGER},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
       <if test="context != null" >
         context = #{context,jdbcType=LONGVARCHAR},
       </if>
@@ -222,13 +237,15 @@
     update result
     set times = #{times,jdbcType=DATE},
       files_id = #{filesId,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT},
       context = #{context,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Result" >
     update result
     set times = #{times,jdbcType=DATE},
-      files_id = #{filesId,jdbcType=INTEGER}
+      files_id = #{filesId,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

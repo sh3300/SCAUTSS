@@ -11,6 +11,8 @@ public class File {
 
     private String filesType;
 
+    private Byte deleted;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class File {
 
     public void setFilesType(String filesType) {
         this.filesType = filesType == null ? null : filesType.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 }

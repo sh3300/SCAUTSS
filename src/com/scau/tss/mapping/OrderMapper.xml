@@ -12,6 +12,7 @@
     <result column="days" property="days" jdbcType="INTEGER" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
     <result column="types" property="types" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, hotel_id, times, price, check_in, pay_way, days, amount, types
+    id, user_id, hotel_id, times, price, check_in, pay_way, days, amount, types, deleted
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.OrderExample" >
     select
@@ -107,12 +108,12 @@
   <insert id="insert" parameterType="com.scau.tss.entity.Order" >
     insert into orders (id, user_id, hotel_id, 
       times, price, check_in, pay_way, 
-      days, amount, types
-      )
+      days, amount, types, 
+      deleted)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{hotelId,jdbcType=VARCHAR}, 
       #{times,jdbcType=DATE}, #{price,jdbcType=DECIMAL}, #{checkIn,jdbcType=DATE}, #{payWay,jdbcType=VARCHAR}, 
-      #{days,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{types,jdbcType=VARCHAR}
-      )
+      #{days,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{types,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Order" >
     insert into orders
@@ -147,6 +148,9 @@
       <if test="types != null" >
         types,
       </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -178,6 +182,9 @@
       </if>
       <if test="types != null" >
         #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -220,6 +227,9 @@
       <if test="record.types != null" >
         types = #{record.types,jdbcType=VARCHAR},
       </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +246,8 @@
       pay_way = #{record.payWay,jdbcType=VARCHAR},
       days = #{record.days,jdbcType=INTEGER},
       amount = #{record.amount,jdbcType=DECIMAL},
-      types = #{record.types,jdbcType=VARCHAR}
+      types = #{record.types,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -271,6 +282,9 @@
       <if test="types != null" >
         types = #{types,jdbcType=VARCHAR},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -284,7 +298,8 @@
       pay_way = #{payWay,jdbcType=VARCHAR},
       days = #{days,jdbcType=INTEGER},
       amount = #{amount,jdbcType=DECIMAL},
-      types = #{types,jdbcType=VARCHAR}
+      types = #{types,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

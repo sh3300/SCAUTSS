@@ -9,6 +9,8 @@ public class Result {
 
     private Integer filesId;
 
+    private Byte deleted;
+
     private String context;
 
     public Integer getId() {
@@ -33,6 +35,14 @@ public class Result {
 
     public void setFilesId(Integer filesId) {
         this.filesId = filesId;
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 
     public String getContext() {

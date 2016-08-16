@@ -8,6 +8,7 @@
     <result column="levels" property="levels" jdbcType="INTEGER" />
     <result column="times" property="times" jdbcType="DATE" />
     <result column="room_number" property="roomNumber" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.Hotel" extends="BaseResultMap" >
     <result column="position" property="position" jdbcType="LONGVARCHAR" />
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, types, names, levels, times, room_number
+    id, types, names, levels, times, room_number, deleted
   </sql>
   <sql id="Blob_Column_List" >
     position
@@ -127,10 +128,10 @@
   <insert id="insert" parameterType="com.scau.tss.entity.Hotel" >
     insert into hotels (id, types, names, 
       levels, times, room_number, 
-      position)
+      deleted, position)
     values (#{id,jdbcType=INTEGER}, #{types,jdbcType=VARCHAR}, #{names,jdbcType=VARCHAR}, 
       #{levels,jdbcType=INTEGER}, #{times,jdbcType=DATE}, #{roomNumber,jdbcType=INTEGER}, 
-      #{position,jdbcType=LONGVARCHAR})
+      #{deleted,jdbcType=TINYINT}, #{position,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Hotel" >
     insert into hotels
@@ -152,6 +153,9 @@
       </if>
       <if test="roomNumber != null" >
         room_number,
+      </if>
+      <if test="deleted != null" >
+        deleted,
       </if>
       <if test="position != null" >
         position,
@@ -175,6 +179,9 @@
       </if>
       <if test="roomNumber != null" >
         #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
       </if>
       <if test="position != null" >
         #{position,jdbcType=LONGVARCHAR},
@@ -208,6 +215,9 @@
       <if test="record.roomNumber != null" >
         room_number = #{record.roomNumber,jdbcType=INTEGER},
       </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
       <if test="record.position != null" >
         position = #{record.position,jdbcType=LONGVARCHAR},
       </if>
@@ -224,6 +234,7 @@
       levels = #{record.levels,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
       room_number = #{record.roomNumber,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=TINYINT},
       position = #{record.position,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +247,8 @@
       names = #{record.names,jdbcType=VARCHAR},
       levels = #{record.levels,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
-      room_number = #{record.roomNumber,jdbcType=INTEGER}
+      room_number = #{record.roomNumber,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,6 +271,9 @@
       <if test="roomNumber != null" >
         room_number = #{roomNumber,jdbcType=INTEGER},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
       <if test="position != null" >
         position = #{position,jdbcType=LONGVARCHAR},
       </if>
@@ -272,6 +287,7 @@
       levels = #{levels,jdbcType=INTEGER},
       times = #{times,jdbcType=DATE},
       room_number = #{roomNumber,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT},
       position = #{position,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -281,7 +297,8 @@
       names = #{names,jdbcType=VARCHAR},
       levels = #{levels,jdbcType=INTEGER},
       times = #{times,jdbcType=DATE},
-      room_number = #{roomNumber,jdbcType=INTEGER}
+      room_number = #{roomNumber,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -23,6 +23,8 @@ public class Order {
 
     private String types;
 
+    private Byte deleted;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class Order {
 
     public void setTypes(String types) {
         this.types = types == null ? null : types.trim();
+    }
+
+    public Byte getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Byte deleted) {
+        this.deleted = deleted;
     }
 }
