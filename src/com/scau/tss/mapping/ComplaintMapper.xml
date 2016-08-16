@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.tss.dao.ComplaintMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Complaint" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="tourist_id" property="touristId" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="DATE" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="access" property="access" jdbcType="DECIMAL" />
+    <result column="examiner_id" property="examinerId" jdbcType="VARCHAR" />
+    <result column="manager_id" property="managerId" jdbcType="VARCHAR" />
+    <result column="result_id" property="resultId" jdbcType="VARCHAR" />
+    <result column="res_id" property="resId" jdbcType="INTEGER" />
+    <result column="files_id" property="filesId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.ComplaintWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="feedback" property="feedback" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, tourist_id, times, state, access, examiner_id, manager_id, result_id, 
+    res_id, files_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, feedback
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scau.tss.entity.ComplaintExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from complaint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.ComplaintExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from complaint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from complaint
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from complaint
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.tss.entity.ComplaintExample" >
+    delete from complaint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.tss.entity.ComplaintWithBLOBs" >
+    insert into complaint (id, title, tourist_id, 
+      times, state, access, 
+      examiner_id, manager_id, result_id, 
+      res_id, files_id, content, 
+      feedback)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{touristId,jdbcType=VARCHAR}, 
+      #{times,jdbcType=DATE}, #{state,jdbcType=VARCHAR}, #{access,jdbcType=DECIMAL}, 
+      #{examinerId,jdbcType=VARCHAR}, #{managerId,jdbcType=VARCHAR}, #{resultId,jdbcType=VARCHAR}, 
+      #{resId,jdbcType=INTEGER}, #{filesId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, 
+      #{feedback,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.tss.entity.ComplaintWithBLOBs" >
+    insert into complaint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="touristId != null" >
+        tourist_id,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="access != null" >
+        access,
+      </if>
+      <if test="examinerId != null" >
+        examiner_id,
+      </if>
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="resultId != null" >
+        result_id,
+      </if>
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="filesId != null" >
+        files_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="feedback != null" >
+        feedback,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="touristId != null" >
+        #{touristId,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="access != null" >
+        #{access,jdbcType=DECIMAL},
+      </if>
+      <if test="examinerId != null" >
+        #{examinerId,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultId != null" >
+        #{resultId,jdbcType=VARCHAR},
+      </if>
+      <if test="resId != null" >
+        #{resId,jdbcType=INTEGER},
+      </if>
+      <if test="filesId != null" >
+        #{filesId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feedback != null" >
+        #{feedback,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.tss.entity.ComplaintExample" resultType="java.lang.Integer" >
+    select count(*) from complaint
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update complaint
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.touristId != null" >
+        tourist_id = #{record.touristId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.times != null" >
+        times = #{record.times,jdbcType=DATE},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.access != null" >
+        access = #{record.access,jdbcType=DECIMAL},
+      </if>
+      <if test="record.examinerId != null" >
+        examiner_id = #{record.examinerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerId != null" >
+        manager_id = #{record.managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultId != null" >
+        result_id = #{record.resultId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resId != null" >
+        res_id = #{record.resId,jdbcType=INTEGER},
+      </if>
+      <if test="record.filesId != null" >
+        files_id = #{record.filesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.feedback != null" >
+        feedback = #{record.feedback,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update complaint
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      tourist_id = #{record.touristId,jdbcType=VARCHAR},
+      times = #{record.times,jdbcType=DATE},
+      state = #{record.state,jdbcType=VARCHAR},
+      access = #{record.access,jdbcType=DECIMAL},
+      examiner_id = #{record.examinerId,jdbcType=VARCHAR},
+      manager_id = #{record.managerId,jdbcType=VARCHAR},
+      result_id = #{record.resultId,jdbcType=VARCHAR},
+      res_id = #{record.resId,jdbcType=INTEGER},
+      files_id = #{record.filesId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR},
+      feedback = #{record.feedback,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update complaint
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      tourist_id = #{record.touristId,jdbcType=VARCHAR},
+      times = #{record.times,jdbcType=DATE},
+      state = #{record.state,jdbcType=VARCHAR},
+      access = #{record.access,jdbcType=DECIMAL},
+      examiner_id = #{record.examinerId,jdbcType=VARCHAR},
+      manager_id = #{record.managerId,jdbcType=VARCHAR},
+      result_id = #{record.resultId,jdbcType=VARCHAR},
+      res_id = #{record.resId,jdbcType=INTEGER},
+      files_id = #{record.filesId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.ComplaintWithBLOBs" >
+    update complaint
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="touristId != null" >
+        tourist_id = #{touristId,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="access != null" >
+        access = #{access,jdbcType=DECIMAL},
+      </if>
+      <if test="examinerId != null" >
+        examiner_id = #{examinerId,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null" >
+        manager_id = #{managerId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultId != null" >
+        result_id = #{resultId,jdbcType=VARCHAR},
+      </if>
+      <if test="resId != null" >
+        res_id = #{resId,jdbcType=INTEGER},
+      </if>
+      <if test="filesId != null" >
+        files_id = #{filesId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="feedback != null" >
+        feedback = #{feedback,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.ComplaintWithBLOBs" >
+    update complaint
+    set title = #{title,jdbcType=VARCHAR},
+      tourist_id = #{touristId,jdbcType=VARCHAR},
+      times = #{times,jdbcType=DATE},
+      state = #{state,jdbcType=VARCHAR},
+      access = #{access,jdbcType=DECIMAL},
+      examiner_id = #{examinerId,jdbcType=VARCHAR},
+      manager_id = #{managerId,jdbcType=VARCHAR},
+      result_id = #{resultId,jdbcType=VARCHAR},
+      res_id = #{resId,jdbcType=INTEGER},
+      files_id = #{filesId,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      feedback = #{feedback,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Complaint" >
+    update complaint
+    set title = #{title,jdbcType=VARCHAR},
+      tourist_id = #{touristId,jdbcType=VARCHAR},
+      times = #{times,jdbcType=DATE},
+      state = #{state,jdbcType=VARCHAR},
+      access = #{access,jdbcType=DECIMAL},
+      examiner_id = #{examinerId,jdbcType=VARCHAR},
+      manager_id = #{managerId,jdbcType=VARCHAR},
+      result_id = #{resultId,jdbcType=VARCHAR},
+      res_id = #{resId,jdbcType=INTEGER},
+      files_id = #{filesId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

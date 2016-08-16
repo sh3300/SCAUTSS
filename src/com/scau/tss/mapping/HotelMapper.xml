@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.tss.dao.HotelMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Hotel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="types" property="types" jdbcType="VARCHAR" />
+    <result column="names" property="names" jdbcType="VARCHAR" />
+    <result column="levels" property="levels" jdbcType="INTEGER" />
+    <result column="times" property="times" jdbcType="DATE" />
+    <result column="room_number" property="roomNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.Hotel" extends="BaseResultMap" >
+    <result column="position" property="position" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, types, names, levels, times, room_number
+  </sql>
+  <sql id="Blob_Column_List" >
+    position
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scau.tss.entity.HotelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hotels
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.HotelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hotels
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hotels
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hotels
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.tss.entity.HotelExample" >
+    delete from hotels
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.tss.entity.Hotel" >
+    insert into hotels (id, types, names, 
+      levels, times, room_number, 
+      position)
+    values (#{id,jdbcType=INTEGER}, #{types,jdbcType=VARCHAR}, #{names,jdbcType=VARCHAR}, 
+      #{levels,jdbcType=INTEGER}, #{times,jdbcType=DATE}, #{roomNumber,jdbcType=INTEGER}, 
+      #{position,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.tss.entity.Hotel" >
+    insert into hotels
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="types != null" >
+        types,
+      </if>
+      <if test="names != null" >
+        names,
+      </if>
+      <if test="levels != null" >
+        levels,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="roomNumber != null" >
+        room_number,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="types != null" >
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="names != null" >
+        #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="levels != null" >
+        #{levels,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=DATE},
+      </if>
+      <if test="roomNumber != null" >
+        #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.tss.entity.HotelExample" resultType="java.lang.Integer" >
+    select count(*) from hotels
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hotels
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.types != null" >
+        types = #{record.types,jdbcType=VARCHAR},
+      </if>
+      <if test="record.names != null" >
+        names = #{record.names,jdbcType=VARCHAR},
+      </if>
+      <if test="record.levels != null" >
+        levels = #{record.levels,jdbcType=INTEGER},
+      </if>
+      <if test="record.times != null" >
+        times = #{record.times,jdbcType=DATE},
+      </if>
+      <if test="record.roomNumber != null" >
+        room_number = #{record.roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update hotels
+    set id = #{record.id,jdbcType=INTEGER},
+      types = #{record.types,jdbcType=VARCHAR},
+      names = #{record.names,jdbcType=VARCHAR},
+      levels = #{record.levels,jdbcType=INTEGER},
+      times = #{record.times,jdbcType=DATE},
+      room_number = #{record.roomNumber,jdbcType=INTEGER},
+      position = #{record.position,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hotels
+    set id = #{record.id,jdbcType=INTEGER},
+      types = #{record.types,jdbcType=VARCHAR},
+      names = #{record.names,jdbcType=VARCHAR},
+      levels = #{record.levels,jdbcType=INTEGER},
+      times = #{record.times,jdbcType=DATE},
+      room_number = #{record.roomNumber,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.Hotel" >
+    update hotels
+    <set >
+      <if test="types != null" >
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="names != null" >
+        names = #{names,jdbcType=VARCHAR},
+      </if>
+      <if test="levels != null" >
+        levels = #{levels,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=DATE},
+      </if>
+      <if test="roomNumber != null" >
+        room_number = #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.Hotel" >
+    update hotels
+    set types = #{types,jdbcType=VARCHAR},
+      names = #{names,jdbcType=VARCHAR},
+      levels = #{levels,jdbcType=INTEGER},
+      times = #{times,jdbcType=DATE},
+      room_number = #{roomNumber,jdbcType=INTEGER},
+      position = #{position,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Hotel" >
+    update hotels
+    set types = #{types,jdbcType=VARCHAR},
+      names = #{names,jdbcType=VARCHAR},
+      levels = #{levels,jdbcType=INTEGER},
+      times = #{times,jdbcType=DATE},
+      room_number = #{roomNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
