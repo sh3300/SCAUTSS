@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.scau.tss.dao.RoomMapper" >
-  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Room" >
+<mapper namespace="com.scau.tss.dao.SceneryMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Scenery" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="size" property="size" jdbcType="INTEGER" />
-    <result column="types" property="types" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="INTEGER" />
-    <result column="hotel_id" property="hotelId" jdbcType="INTEGER" />
-    <result column="room_number" property="roomNumber" jdbcType="INTEGER" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tell" property="tell" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.Room" extends="BaseResultMap" >
-    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.SceneryWithBLOBs" extends="BaseResultMap" >
+    <result column="info" property="info" jdbcType="LONGVARCHAR" />
+    <result column="url" property="url" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,12 +72,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, size, types, price, hotel_id, room_number, state, deleted
+    id, name, price, address, tell, deleted
   </sql>
   <sql id="Blob_Column_List" >
-    description
+    info, url
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scau.tss.entity.RoomExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scau.tss.entity.SceneryExample" >
     select
     <if test="distinct" >
       distinct
@@ -86,7 +85,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from rooms
+    from scenery
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,13 +93,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.RoomExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.SceneryExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from rooms
+    from scenery
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -113,125 +112,114 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from rooms
+    from scenery
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from rooms
+    delete from scenery
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.scau.tss.entity.RoomExample" >
-    delete from rooms
+  <delete id="deleteByExample" parameterType="com.scau.tss.entity.SceneryExample" >
+    delete from scenery
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.scau.tss.entity.Room" >
-    insert into rooms (id, size, types, 
-      price, hotel_id, room_number, 
-      state, deleted, description
-      )
-    values (#{id,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, #{types,jdbcType=VARCHAR}, 
-      #{price,jdbcType=INTEGER}, #{hotelId,jdbcType=INTEGER}, #{roomNumber,jdbcType=INTEGER}, 
-      #{state,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{description,jdbcType=LONGVARCHAR}
-      )
+  <insert id="insert" parameterType="com.scau.tss.entity.SceneryWithBLOBs" >
+    insert into scenery (id, name, price, 
+      address, tell, deleted, 
+      info, url)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{address,jdbcType=VARCHAR}, #{tell,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, 
+      #{info,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.scau.tss.entity.Room" >
-    insert into rooms
+  <insert id="insertSelective" parameterType="com.scau.tss.entity.SceneryWithBLOBs" >
+    insert into scenery
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="size != null" >
-        size,
-      </if>
-      <if test="types != null" >
-        types,
+      <if test="name != null" >
+        name,
       </if>
       <if test="price != null" >
         price,
       </if>
-      <if test="hotelId != null" >
-        hotel_id,
+      <if test="address != null" >
+        address,
       </if>
-      <if test="roomNumber != null" >
-        room_number,
-      </if>
-      <if test="state != null" >
-        state,
+      <if test="tell != null" >
+        tell,
       </if>
       <if test="deleted != null" >
         deleted,
       </if>
-      <if test="description != null" >
-        description,
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="size != null" >
-        #{size,jdbcType=INTEGER},
-      </if>
-      <if test="types != null" >
-        #{types,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
-        #{price,jdbcType=INTEGER},
+        #{price,jdbcType=DOUBLE},
       </if>
-      <if test="hotelId != null" >
-        #{hotelId,jdbcType=INTEGER},
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
       </if>
-      <if test="roomNumber != null" >
-        #{roomNumber,jdbcType=INTEGER},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
+      <if test="tell != null" >
+        #{tell,jdbcType=VARCHAR},
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=TINYINT},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=LONGVARCHAR},
+      <if test="info != null" >
+        #{info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.scau.tss.entity.RoomExample" resultType="java.lang.Integer" >
-    select count(*) from rooms
+  <select id="countByExample" parameterType="com.scau.tss.entity.SceneryExample" resultType="java.lang.Integer" >
+    select count(*) from scenery
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update rooms
+    update scenery
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.size != null" >
-        size = #{record.size,jdbcType=INTEGER},
-      </if>
-      <if test="record.types != null" >
-        types = #{record.types,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null" >
-        price = #{record.price,jdbcType=INTEGER},
+        price = #{record.price,jdbcType=DOUBLE},
       </if>
-      <if test="record.hotelId != null" >
-        hotel_id = #{record.hotelId,jdbcType=INTEGER},
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.roomNumber != null" >
-        room_number = #{record.roomNumber,jdbcType=INTEGER},
-      </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
+      <if test="record.tell != null" >
+        tell = #{record.tell,jdbcType=VARCHAR},
       </if>
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
       </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=LONGVARCHAR},
+      <if test="record.info != null" >
+        info = #{record.info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -239,84 +227,75 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update rooms
+    update scenery
     set id = #{record.id,jdbcType=INTEGER},
-      size = #{record.size,jdbcType=INTEGER},
-      types = #{record.types,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
-      hotel_id = #{record.hotelId,jdbcType=INTEGER},
-      room_number = #{record.roomNumber,jdbcType=INTEGER},
-      state = #{record.state,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DOUBLE},
+      address = #{record.address,jdbcType=VARCHAR},
+      tell = #{record.tell,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=TINYINT},
-      description = #{record.description,jdbcType=LONGVARCHAR}
+      info = #{record.info,jdbcType=LONGVARCHAR},
+      url = #{record.url,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update rooms
+    update scenery
     set id = #{record.id,jdbcType=INTEGER},
-      size = #{record.size,jdbcType=INTEGER},
-      types = #{record.types,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
-      hotel_id = #{record.hotelId,jdbcType=INTEGER},
-      room_number = #{record.roomNumber,jdbcType=INTEGER},
-      state = #{record.state,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DOUBLE},
+      address = #{record.address,jdbcType=VARCHAR},
+      tell = #{record.tell,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.Room" >
-    update rooms
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.SceneryWithBLOBs" >
+    update scenery
     <set >
-      <if test="size != null" >
-        size = #{size,jdbcType=INTEGER},
-      </if>
-      <if test="types != null" >
-        types = #{types,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=INTEGER},
+        price = #{price,jdbcType=DOUBLE},
       </if>
-      <if test="hotelId != null" >
-        hotel_id = #{hotelId,jdbcType=INTEGER},
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="roomNumber != null" >
-        room_number = #{roomNumber,jdbcType=INTEGER},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
+      <if test="tell != null" >
+        tell = #{tell,jdbcType=VARCHAR},
       </if>
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=TINYINT},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=LONGVARCHAR},
+      <if test="info != null" >
+        info = #{info,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.Room" >
-    update rooms
-    set size = #{size,jdbcType=INTEGER},
-      types = #{types,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      hotel_id = #{hotelId,jdbcType=INTEGER},
-      room_number = #{roomNumber,jdbcType=INTEGER},
-      state = #{state,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.SceneryWithBLOBs" >
+    update scenery
+    set name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      tell = #{tell,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=TINYINT},
-      description = #{description,jdbcType=LONGVARCHAR}
+      info = #{info,jdbcType=LONGVARCHAR},
+      url = #{url,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Room" >
-    update rooms
-    set size = #{size,jdbcType=INTEGER},
-      types = #{types,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      hotel_id = #{hotelId,jdbcType=INTEGER},
-      room_number = #{roomNumber,jdbcType=INTEGER},
-      state = #{state,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Scenery" >
+    update scenery
+    set name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      tell = #{tell,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

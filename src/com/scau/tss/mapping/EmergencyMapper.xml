@@ -7,9 +7,9 @@
     <result column="context" property="context" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="dead_line" property="deadLine" jdbcType="DATE" />
-    <result column="releaser_id" property="releaserId" jdbcType="VARCHAR" />
+    <result column="releaser_id" property="releaserId" jdbcType="INTEGER" />
     <result column="types" property="types" jdbcType="VARCHAR" />
-    <result column="examine_id" property="examineId" jdbcType="VARCHAR" />
+    <result column="examine_id" property="examineId" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -109,8 +109,8 @@
       types, examine_id, deleted
       )
     values (#{id,jdbcType=INTEGER}, #{releaseTime,jdbcType=DATE}, #{context,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{deadLine,jdbcType=DATE}, #{releaserId,jdbcType=VARCHAR}, 
-      #{types,jdbcType=VARCHAR}, #{examineId,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}
+      #{title,jdbcType=VARCHAR}, #{deadLine,jdbcType=DATE}, #{releaserId,jdbcType=INTEGER}, 
+      #{types,jdbcType=VARCHAR}, #{examineId,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Emergency" >
@@ -161,13 +161,13 @@
         #{deadLine,jdbcType=DATE},
       </if>
       <if test="releaserId != null" >
-        #{releaserId,jdbcType=VARCHAR},
+        #{releaserId,jdbcType=INTEGER},
       </if>
       <if test="types != null" >
         #{types,jdbcType=VARCHAR},
       </if>
       <if test="examineId != null" >
-        #{examineId,jdbcType=VARCHAR},
+        #{examineId,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=TINYINT},
@@ -199,13 +199,13 @@
         dead_line = #{record.deadLine,jdbcType=DATE},
       </if>
       <if test="record.releaserId != null" >
-        releaser_id = #{record.releaserId,jdbcType=VARCHAR},
+        releaser_id = #{record.releaserId,jdbcType=INTEGER},
       </if>
       <if test="record.types != null" >
         types = #{record.types,jdbcType=VARCHAR},
       </if>
       <if test="record.examineId != null" >
-        examine_id = #{record.examineId,jdbcType=VARCHAR},
+        examine_id = #{record.examineId,jdbcType=INTEGER},
       </if>
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
@@ -222,9 +222,9 @@
       context = #{record.context,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       dead_line = #{record.deadLine,jdbcType=DATE},
-      releaser_id = #{record.releaserId,jdbcType=VARCHAR},
+      releaser_id = #{record.releaserId,jdbcType=INTEGER},
       types = #{record.types,jdbcType=VARCHAR},
-      examine_id = #{record.examineId,jdbcType=VARCHAR},
+      examine_id = #{record.examineId,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -246,13 +246,13 @@
         dead_line = #{deadLine,jdbcType=DATE},
       </if>
       <if test="releaserId != null" >
-        releaser_id = #{releaserId,jdbcType=VARCHAR},
+        releaser_id = #{releaserId,jdbcType=INTEGER},
       </if>
       <if test="types != null" >
         types = #{types,jdbcType=VARCHAR},
       </if>
       <if test="examineId != null" >
-        examine_id = #{examineId,jdbcType=VARCHAR},
+        examine_id = #{examineId,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=TINYINT},
@@ -266,9 +266,9 @@
       context = #{context,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       dead_line = #{deadLine,jdbcType=DATE},
-      releaser_id = #{releaserId,jdbcType=VARCHAR},
+      releaser_id = #{releaserId,jdbcType=INTEGER},
       types = #{types,jdbcType=VARCHAR},
-      examine_id = #{examineId,jdbcType=VARCHAR},
+      examine_id = #{examineId,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -3,7 +3,7 @@ package com.scau.tss.entity;
 public class Room {
     private Integer id;
 
-    private Short size;
+    private Integer size;
 
     private String types;
 
@@ -27,11 +27,11 @@ public class Room {
         this.id = id;
     }
 
-    public Short getSize() {
+    public Integer getSize() {
         return size;
     }
 
-    public void setSize(Short size) {
+    public void setSize(Integer size) {
         this.size = size;
     }
 

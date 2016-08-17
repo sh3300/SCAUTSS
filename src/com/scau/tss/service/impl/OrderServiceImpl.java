@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 		OrderExample.Criteria criteria = orderExample.createCriteria();
 		// 添加查询条件，方法格式：“and”+字段名+判断方式
 		// 如and+UserId+EqualTo为通过userid查询order
-		criteria.andUserIdEqualTo("1");
+		criteria.andUserIdEqualTo(1);
 		List<Order> orderList = orderMapper.selectByExample(orderExample);
 		return orderList;
 	}

@@ -6,6 +6,8 @@
   </head>
   
   <body>
-    ${user.userName}
+    ${user.account} 
+    ${user.accountPassword}
+    ${user.registerType}
   </body>
 </html>

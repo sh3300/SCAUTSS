@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.scau.tss.entity.Complaint" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="tourist_id" property="touristId" jdbcType="VARCHAR" />
+    <result column="tourist_id" property="touristId" jdbcType="INTEGER" />
     <result column="times" property="times" jdbcType="DATE" />
     <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="access" property="access" jdbcType="DECIMAL" />
-    <result column="examiner_id" property="examinerId" jdbcType="VARCHAR" />
-    <result column="manager_id" property="managerId" jdbcType="VARCHAR" />
-    <result column="result_id" property="resultId" jdbcType="VARCHAR" />
+    <result column="access" property="access" jdbcType="INTEGER" />
+    <result column="examiner_id" property="examinerId" jdbcType="INTEGER" />
+    <result column="manager_id" property="managerId" jdbcType="INTEGER" />
+    <result column="result_id" property="resultId" jdbcType="INTEGER" />
     <result column="res_id" property="resId" jdbcType="INTEGER" />
     <result column="files_id" property="filesId" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
@@ -138,9 +138,9 @@
       examiner_id, manager_id, result_id, 
       res_id, files_id, deleted, 
       content, feedback)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{touristId,jdbcType=VARCHAR}, 
-      #{times,jdbcType=DATE}, #{state,jdbcType=VARCHAR}, #{access,jdbcType=DECIMAL}, 
-      #{examinerId,jdbcType=VARCHAR}, #{managerId,jdbcType=VARCHAR}, #{resultId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{touristId,jdbcType=INTEGER}, 
+      #{times,jdbcType=DATE}, #{state,jdbcType=VARCHAR}, #{access,jdbcType=INTEGER}, 
+      #{examinerId,jdbcType=INTEGER}, #{managerId,jdbcType=INTEGER}, #{resultId,jdbcType=INTEGER}, 
       #{resId,jdbcType=INTEGER}, #{filesId,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT}, 
       #{content,jdbcType=LONGVARCHAR}, #{feedback,jdbcType=LONGVARCHAR})
   </insert>
@@ -198,7 +198,7 @@
         #{title,jdbcType=VARCHAR},
       </if>
       <if test="touristId != null" >
-        #{touristId,jdbcType=VARCHAR},
+        #{touristId,jdbcType=INTEGER},
       </if>
       <if test="times != null" >
         #{times,jdbcType=DATE},
@@ -207,16 +207,16 @@
         #{state,jdbcType=VARCHAR},
       </if>
       <if test="access != null" >
-        #{access,jdbcType=DECIMAL},
+        #{access,jdbcType=INTEGER},
       </if>
       <if test="examinerId != null" >
-        #{examinerId,jdbcType=VARCHAR},
+        #{examinerId,jdbcType=INTEGER},
       </if>
       <if test="managerId != null" >
-        #{managerId,jdbcType=VARCHAR},
+        #{managerId,jdbcType=INTEGER},
       </if>
       <if test="resultId != null" >
-        #{resultId,jdbcType=VARCHAR},
+        #{resultId,jdbcType=INTEGER},
       </if>
       <if test="resId != null" >
         #{resId,jdbcType=INTEGER},
@@ -251,7 +251,7 @@
         title = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.touristId != null" >
-        tourist_id = #{record.touristId,jdbcType=VARCHAR},
+        tourist_id = #{record.touristId,jdbcType=INTEGER},
       </if>
       <if test="record.times != null" >
         times = #{record.times,jdbcType=DATE},
@@ -260,16 +260,16 @@
         state = #{record.state,jdbcType=VARCHAR},
       </if>
       <if test="record.access != null" >
-        access = #{record.access,jdbcType=DECIMAL},
+        access = #{record.access,jdbcType=INTEGER},
       </if>
       <if test="record.examinerId != null" >
-        examiner_id = #{record.examinerId,jdbcType=VARCHAR},
+        examiner_id = #{record.examinerId,jdbcType=INTEGER},
       </if>
       <if test="record.managerId != null" >
-        manager_id = #{record.managerId,jdbcType=VARCHAR},
+        manager_id = #{record.managerId,jdbcType=INTEGER},
       </if>
       <if test="record.resultId != null" >
-        result_id = #{record.resultId,jdbcType=VARCHAR},
+        result_id = #{record.resultId,jdbcType=INTEGER},
       </if>
       <if test="record.resId != null" >
         res_id = #{record.resId,jdbcType=INTEGER},
@@ -295,13 +295,13 @@
     update complaint
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      tourist_id = #{record.touristId,jdbcType=VARCHAR},
+      tourist_id = #{record.touristId,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
       state = #{record.state,jdbcType=VARCHAR},
-      access = #{record.access,jdbcType=DECIMAL},
-      examiner_id = #{record.examinerId,jdbcType=VARCHAR},
-      manager_id = #{record.managerId,jdbcType=VARCHAR},
-      result_id = #{record.resultId,jdbcType=VARCHAR},
+      access = #{record.access,jdbcType=INTEGER},
+      examiner_id = #{record.examinerId,jdbcType=INTEGER},
+      manager_id = #{record.managerId,jdbcType=INTEGER},
+      result_id = #{record.resultId,jdbcType=INTEGER},
       res_id = #{record.resId,jdbcType=INTEGER},
       files_id = #{record.filesId,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=TINYINT},
@@ -315,13 +315,13 @@
     update complaint
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      tourist_id = #{record.touristId,jdbcType=VARCHAR},
+      tourist_id = #{record.touristId,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
       state = #{record.state,jdbcType=VARCHAR},
-      access = #{record.access,jdbcType=DECIMAL},
-      examiner_id = #{record.examinerId,jdbcType=VARCHAR},
-      manager_id = #{record.managerId,jdbcType=VARCHAR},
-      result_id = #{record.resultId,jdbcType=VARCHAR},
+      access = #{record.access,jdbcType=INTEGER},
+      examiner_id = #{record.examinerId,jdbcType=INTEGER},
+      manager_id = #{record.managerId,jdbcType=INTEGER},
+      result_id = #{record.resultId,jdbcType=INTEGER},
       res_id = #{record.resId,jdbcType=INTEGER},
       files_id = #{record.filesId,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=TINYINT}
@@ -336,7 +336,7 @@
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="touristId != null" >
-        tourist_id = #{touristId,jdbcType=VARCHAR},
+        tourist_id = #{touristId,jdbcType=INTEGER},
       </if>
       <if test="times != null" >
         times = #{times,jdbcType=DATE},
@@ -345,16 +345,16 @@
         state = #{state,jdbcType=VARCHAR},
       </if>
       <if test="access != null" >
-        access = #{access,jdbcType=DECIMAL},
+        access = #{access,jdbcType=INTEGER},
       </if>
       <if test="examinerId != null" >
-        examiner_id = #{examinerId,jdbcType=VARCHAR},
+        examiner_id = #{examinerId,jdbcType=INTEGER},
       </if>
       <if test="managerId != null" >
-        manager_id = #{managerId,jdbcType=VARCHAR},
+        manager_id = #{managerId,jdbcType=INTEGER},
       </if>
       <if test="resultId != null" >
-        result_id = #{resultId,jdbcType=VARCHAR},
+        result_id = #{resultId,jdbcType=INTEGER},
       </if>
       <if test="resId != null" >
         res_id = #{resId,jdbcType=INTEGER},
@@ -377,13 +377,13 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.ComplaintWithBLOBs" >
     update complaint
     set title = #{title,jdbcType=VARCHAR},
-      tourist_id = #{touristId,jdbcType=VARCHAR},
+      tourist_id = #{touristId,jdbcType=INTEGER},
       times = #{times,jdbcType=DATE},
       state = #{state,jdbcType=VARCHAR},
-      access = #{access,jdbcType=DECIMAL},
-      examiner_id = #{examinerId,jdbcType=VARCHAR},
-      manager_id = #{managerId,jdbcType=VARCHAR},
-      result_id = #{resultId,jdbcType=VARCHAR},
+      access = #{access,jdbcType=INTEGER},
+      examiner_id = #{examinerId,jdbcType=INTEGER},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      result_id = #{resultId,jdbcType=INTEGER},
       res_id = #{resId,jdbcType=INTEGER},
       files_id = #{filesId,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=TINYINT},
@@ -394,13 +394,13 @@
   <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Complaint" >
     update complaint
     set title = #{title,jdbcType=VARCHAR},
-      tourist_id = #{touristId,jdbcType=VARCHAR},
+      tourist_id = #{touristId,jdbcType=INTEGER},
       times = #{times,jdbcType=DATE},
       state = #{state,jdbcType=VARCHAR},
-      access = #{access,jdbcType=DECIMAL},
-      examiner_id = #{examinerId,jdbcType=VARCHAR},
-      manager_id = #{managerId,jdbcType=VARCHAR},
-      result_id = #{resultId,jdbcType=VARCHAR},
+      access = #{access,jdbcType=INTEGER},
+      examiner_id = #{examinerId,jdbcType=INTEGER},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      result_id = #{resultId,jdbcType=INTEGER},
       res_id = #{resId,jdbcType=INTEGER},
       files_id = #{filesId,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=TINYINT}

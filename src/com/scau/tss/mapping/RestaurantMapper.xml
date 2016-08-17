@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.scau.tss.dao.ExamineMapper" >
-  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Examine" >
+<mapper namespace="com.scau.tss.dao.RestaurantMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Restaurant" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="examiner_id" property="examinerId" jdbcType="INTEGER" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="kind" property="kind" jdbcType="VARCHAR" />
+    <result column="perPerson" property="perperson" jdbcType="DECIMAL" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="scenery_id" property="sceneryId" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.Examine" extends="BaseResultMap" >
-    <result column="command" property="command" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,20 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, examiner_id, state, deleted
+    id, name, kind, perPerson, address, score, scenery_id, deleted
   </sql>
-  <sql id="Blob_Column_List" >
-    command
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scau.tss.entity.ExamineExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.RestaurantExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from examine
+    from restaurant
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,161 +86,172 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.ExamineExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from examine
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from examine
+    from restaurant
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from examine
+    delete from restaurant
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.scau.tss.entity.ExamineExample" >
-    delete from examine
+  <delete id="deleteByExample" parameterType="com.scau.tss.entity.RestaurantExample" >
+    delete from restaurant
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.scau.tss.entity.Examine" >
-    insert into examine (id, examiner_id, state, 
-      deleted, command)
-    values (#{id,jdbcType=INTEGER}, #{examinerId,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=TINYINT}, #{command,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="com.scau.tss.entity.Restaurant" >
+    insert into restaurant (id, name, kind, 
+      perPerson, address, score, 
+      scenery_id, deleted)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{kind,jdbcType=VARCHAR}, 
+      #{perperson,jdbcType=DECIMAL}, #{address,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
+      #{sceneryId,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.scau.tss.entity.Examine" >
-    insert into examine
+  <insert id="insertSelective" parameterType="com.scau.tss.entity.Restaurant" >
+    insert into restaurant
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="examinerId != null" >
-        examiner_id,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="state != null" >
-        state,
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="perperson != null" >
+        perPerson,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="sceneryId != null" >
+        scenery_id,
       </if>
       <if test="deleted != null" >
         deleted,
-      </if>
-      <if test="command != null" >
-        command,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="examinerId != null" >
-        #{examinerId,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
+      <if test="kind != null" >
+        #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="perperson != null" >
+        #{perperson,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="sceneryId != null" >
+        #{sceneryId,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=TINYINT},
       </if>
-      <if test="command != null" >
-        #{command,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.scau.tss.entity.ExamineExample" resultType="java.lang.Integer" >
-    select count(*) from examine
+  <select id="countByExample" parameterType="com.scau.tss.entity.RestaurantExample" resultType="java.lang.Integer" >
+    select count(*) from restaurant
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update examine
+    update restaurant
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.examinerId != null" >
-        examiner_id = #{record.examinerId,jdbcType=INTEGER},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
+      <if test="record.kind != null" >
+        kind = #{record.kind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.perperson != null" >
+        perPerson = #{record.perperson,jdbcType=DECIMAL},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.sceneryId != null" >
+        scenery_id = #{record.sceneryId,jdbcType=INTEGER},
       </if>
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
       </if>
-      <if test="record.command != null" >
-        command = #{record.command,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update examine
-    set id = #{record.id,jdbcType=INTEGER},
-      examiner_id = #{record.examinerId,jdbcType=INTEGER},
-      state = #{record.state,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=TINYINT},
-      command = #{record.command,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update examine
+    update restaurant
     set id = #{record.id,jdbcType=INTEGER},
-      examiner_id = #{record.examinerId,jdbcType=INTEGER},
-      state = #{record.state,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      kind = #{record.kind,jdbcType=VARCHAR},
+      perPerson = #{record.perperson,jdbcType=DECIMAL},
+      address = #{record.address,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      scenery_id = #{record.sceneryId,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.Examine" >
-    update examine
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.Restaurant" >
+    update restaurant
     <set >
-      <if test="examinerId != null" >
-        examiner_id = #{examinerId,jdbcType=INTEGER},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
+      <if test="kind != null" >
+        kind = #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="perperson != null" >
+        perPerson = #{perperson,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="sceneryId != null" >
+        scenery_id = #{sceneryId,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=TINYINT},
       </if>
-      <if test="command != null" >
-        command = #{command,jdbcType=LONGVARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.Examine" >
-    update examine
-    set examiner_id = #{examinerId,jdbcType=INTEGER},
-      state = #{state,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=TINYINT},
-      command = #{command,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Examine" >
-    update examine
-    set examiner_id = #{examinerId,jdbcType=INTEGER},
-      state = #{state,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Restaurant" >
+    update restaurant
+    set name = #{name,jdbcType=VARCHAR},
+      kind = #{kind,jdbcType=VARCHAR},
+      perPerson = #{perperson,jdbcType=DECIMAL},
+      address = #{address,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      scenery_id = #{sceneryId,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

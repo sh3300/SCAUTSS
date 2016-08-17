@@ -1,5 +1,6 @@
 package com.scau.tss.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -202,62 +203,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(String value) {
+        public Criteria andUserIdEqualTo(Integer value) {
             addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(String value) {
+        public Criteria andUserIdNotEqualTo(Integer value) {
             addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(String value) {
+        public Criteria andUserIdGreaterThan(Integer value) {
             addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(String value) {
+        public Criteria andUserIdLessThan(Integer value) {
             addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThanOrEqualTo(String value) {
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
             addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLike(String value) {
-            addCriterion("user_id like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotLike(String value) {
-            addCriterion("user_id not like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<String> values) {
+        public Criteria andUserIdIn(List<Integer> values) {
             addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotIn(List<String> values) {
+        public Criteria andUserIdNotIn(List<Integer> values) {
             addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdBetween(String value1, String value2) {
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
             addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotBetween(String value1, String value2) {
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
             addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
@@ -272,62 +263,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdEqualTo(String value) {
+        public Criteria andHotelIdEqualTo(Integer value) {
             addCriterion("hotel_id =", value, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdNotEqualTo(String value) {
+        public Criteria andHotelIdNotEqualTo(Integer value) {
             addCriterion("hotel_id <>", value, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdGreaterThan(String value) {
+        public Criteria andHotelIdGreaterThan(Integer value) {
             addCriterion("hotel_id >", value, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdGreaterThanOrEqualTo(String value) {
+        public Criteria andHotelIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("hotel_id >=", value, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdLessThan(String value) {
+        public Criteria andHotelIdLessThan(Integer value) {
             addCriterion("hotel_id <", value, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdLessThanOrEqualTo(String value) {
+        public Criteria andHotelIdLessThanOrEqualTo(Integer value) {
             addCriterion("hotel_id <=", value, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdLike(String value) {
-            addCriterion("hotel_id like", value, "hotelId");
-            return (Criteria) this;
-        }
-
-        public Criteria andHotelIdNotLike(String value) {
-            addCriterion("hotel_id not like", value, "hotelId");
-            return (Criteria) this;
-        }
-
-        public Criteria andHotelIdIn(List<String> values) {
+        public Criteria andHotelIdIn(List<Integer> values) {
             addCriterion("hotel_id in", values, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdNotIn(List<String> values) {
+        public Criteria andHotelIdNotIn(List<Integer> values) {
             addCriterion("hotel_id not in", values, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdBetween(String value1, String value2) {
+        public Criteria andHotelIdBetween(Integer value1, Integer value2) {
             addCriterion("hotel_id between", value1, value2, "hotelId");
             return (Criteria) this;
         }
 
-        public Criteria andHotelIdNotBetween(String value1, String value2) {
+        public Criteria andHotelIdNotBetween(Integer value1, Integer value2) {
             addCriterion("hotel_id not between", value1, value2, "hotelId");
             return (Criteria) this;
         }
@@ -402,52 +383,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Integer value) {
+        public Criteria andPriceEqualTo(BigDecimal value) {
             addCriterion("price =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Integer value) {
+        public Criteria andPriceNotEqualTo(BigDecimal value) {
             addCriterion("price <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Integer value) {
+        public Criteria andPriceGreaterThan(BigDecimal value) {
             addCriterion("price >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPriceGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("price >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Integer value) {
+        public Criteria andPriceLessThan(BigDecimal value) {
             addCriterion("price <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Integer value) {
+        public Criteria andPriceLessThanOrEqualTo(BigDecimal value) {
             addCriterion("price <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Integer> values) {
+        public Criteria andPriceIn(List<BigDecimal> values) {
             addCriterion("price in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Integer> values) {
+        public Criteria andPriceNotIn(List<BigDecimal> values) {
             addCriterion("price not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Integer value1, Integer value2) {
+        public Criteria andPriceBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
             return (Criteria) this;
         }
@@ -652,52 +633,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAmountEqualTo(Long value) {
+        public Criteria andAmountEqualTo(Integer value) {
             addCriterion("amount =", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotEqualTo(Long value) {
+        public Criteria andAmountNotEqualTo(Integer value) {
             addCriterion("amount <>", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThan(Long value) {
+        public Criteria andAmountGreaterThan(Integer value) {
             addCriterion("amount >", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThanOrEqualTo(Long value) {
+        public Criteria andAmountGreaterThanOrEqualTo(Integer value) {
             addCriterion("amount >=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThan(Long value) {
+        public Criteria andAmountLessThan(Integer value) {
             addCriterion("amount <", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThanOrEqualTo(Long value) {
+        public Criteria andAmountLessThanOrEqualTo(Integer value) {
             addCriterion("amount <=", value, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIn(List<Long> values) {
+        public Criteria andAmountIn(List<Integer> values) {
             addCriterion("amount in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotIn(List<Long> values) {
+        public Criteria andAmountNotIn(List<Integer> values) {
             addCriterion("amount not in", values, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountBetween(Long value1, Long value2) {
+        public Criteria andAmountBetween(Integer value1, Integer value2) {
             addCriterion("amount between", value1, value2, "amount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotBetween(Long value1, Long value2) {
+        public Criteria andAmountNotBetween(Integer value1, Integer value2) {
             addCriterion("amount not between", value1, value2, "amount");
             return (Criteria) this;
         }

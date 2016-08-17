@@ -3,14 +3,14 @@
 <mapper namespace="com.scau.tss.dao.OrderMapper" >
   <resultMap id="BaseResultMap" type="com.scau.tss.entity.Order" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="VARCHAR" />
-    <result column="hotel_id" property="hotelId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="hotel_id" property="hotelId" jdbcType="INTEGER" />
     <result column="times" property="times" jdbcType="DATE" />
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="check_in" property="checkIn" jdbcType="DATE" />
     <result column="pay_way" property="payWay" jdbcType="VARCHAR" />
     <result column="days" property="days" jdbcType="INTEGER" />
-    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
     <result column="types" property="types" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
@@ -110,9 +110,9 @@
       times, price, check_in, pay_way, 
       days, amount, types, 
       deleted)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{hotelId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{hotelId,jdbcType=INTEGER}, 
       #{times,jdbcType=DATE}, #{price,jdbcType=DECIMAL}, #{checkIn,jdbcType=DATE}, #{payWay,jdbcType=VARCHAR}, 
-      #{days,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{types,jdbcType=VARCHAR}, 
+      #{days,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, #{types,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.Order" >
@@ -157,10 +157,10 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="hotelId != null" >
-        #{hotelId,jdbcType=VARCHAR},
+        #{hotelId,jdbcType=INTEGER},
       </if>
       <if test="times != null" >
         #{times,jdbcType=DATE},
@@ -178,7 +178,7 @@
         #{days,jdbcType=INTEGER},
       </if>
       <if test="amount != null" >
-        #{amount,jdbcType=DECIMAL},
+        #{amount,jdbcType=INTEGER},
       </if>
       <if test="types != null" >
         #{types,jdbcType=VARCHAR},
@@ -201,10 +201,10 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.hotelId != null" >
-        hotel_id = #{record.hotelId,jdbcType=VARCHAR},
+        hotel_id = #{record.hotelId,jdbcType=INTEGER},
       </if>
       <if test="record.times != null" >
         times = #{record.times,jdbcType=DATE},
@@ -222,7 +222,7 @@
         days = #{record.days,jdbcType=INTEGER},
       </if>
       <if test="record.amount != null" >
-        amount = #{record.amount,jdbcType=DECIMAL},
+        amount = #{record.amount,jdbcType=INTEGER},
       </if>
       <if test="record.types != null" >
         types = #{record.types,jdbcType=VARCHAR},
@@ -238,14 +238,14 @@
   <update id="updateByExample" parameterType="map" >
     update orders
     set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=VARCHAR},
-      hotel_id = #{record.hotelId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      hotel_id = #{record.hotelId,jdbcType=INTEGER},
       times = #{record.times,jdbcType=DATE},
       price = #{record.price,jdbcType=DECIMAL},
       check_in = #{record.checkIn,jdbcType=DATE},
       pay_way = #{record.payWay,jdbcType=VARCHAR},
       days = #{record.days,jdbcType=INTEGER},
-      amount = #{record.amount,jdbcType=DECIMAL},
+      amount = #{record.amount,jdbcType=INTEGER},
       types = #{record.types,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
@@ -256,10 +256,10 @@
     update orders
     <set >
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="hotelId != null" >
-        hotel_id = #{hotelId,jdbcType=VARCHAR},
+        hotel_id = #{hotelId,jdbcType=INTEGER},
       </if>
       <if test="times != null" >
         times = #{times,jdbcType=DATE},
@@ -277,7 +277,7 @@
         days = #{days,jdbcType=INTEGER},
       </if>
       <if test="amount != null" >
-        amount = #{amount,jdbcType=DECIMAL},
+        amount = #{amount,jdbcType=INTEGER},
       </if>
       <if test="types != null" >
         types = #{types,jdbcType=VARCHAR},
@@ -290,14 +290,14 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Order" >
     update orders
-    set user_id = #{userId,jdbcType=VARCHAR},
-      hotel_id = #{hotelId,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
+      hotel_id = #{hotelId,jdbcType=INTEGER},
       times = #{times,jdbcType=DATE},
       price = #{price,jdbcType=DECIMAL},
       check_in = #{checkIn,jdbcType=DATE},
       pay_way = #{payWay,jdbcType=VARCHAR},
       days = #{days,jdbcType=INTEGER},
-      amount = #{amount,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=INTEGER},
       types = #{types,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}

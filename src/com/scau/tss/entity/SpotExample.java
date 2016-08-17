@@ -3,14 +3,14 @@ package com.scau.tss.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExamineExample {
+public class SpotExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ExamineExample() {
+    public SpotExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,133 +164,63 @@ public class ExamineExample {
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdIsNull() {
-            addCriterion("examiner_id is null");
+        public Criteria andSceneryidIsNull() {
+            addCriterion("sceneryId is null");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdIsNotNull() {
-            addCriterion("examiner_id is not null");
+        public Criteria andSceneryidIsNotNull() {
+            addCriterion("sceneryId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdEqualTo(Integer value) {
-            addCriterion("examiner_id =", value, "examinerId");
+        public Criteria andSceneryidEqualTo(Integer value) {
+            addCriterion("sceneryId =", value, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdNotEqualTo(Integer value) {
-            addCriterion("examiner_id <>", value, "examinerId");
+        public Criteria andSceneryidNotEqualTo(Integer value) {
+            addCriterion("sceneryId <>", value, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdGreaterThan(Integer value) {
-            addCriterion("examiner_id >", value, "examinerId");
+        public Criteria andSceneryidGreaterThan(Integer value) {
+            addCriterion("sceneryId >", value, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("examiner_id >=", value, "examinerId");
+        public Criteria andSceneryidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sceneryId >=", value, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdLessThan(Integer value) {
-            addCriterion("examiner_id <", value, "examinerId");
+        public Criteria andSceneryidLessThan(Integer value) {
+            addCriterion("sceneryId <", value, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdLessThanOrEqualTo(Integer value) {
-            addCriterion("examiner_id <=", value, "examinerId");
+        public Criteria andSceneryidLessThanOrEqualTo(Integer value) {
+            addCriterion("sceneryId <=", value, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdIn(List<Integer> values) {
-            addCriterion("examiner_id in", values, "examinerId");
+        public Criteria andSceneryidIn(List<Integer> values) {
+            addCriterion("sceneryId in", values, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdNotIn(List<Integer> values) {
-            addCriterion("examiner_id not in", values, "examinerId");
+        public Criteria andSceneryidNotIn(List<Integer> values) {
+            addCriterion("sceneryId not in", values, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdBetween(Integer value1, Integer value2) {
-            addCriterion("examiner_id between", value1, value2, "examinerId");
+        public Criteria andSceneryidBetween(Integer value1, Integer value2) {
+            addCriterion("sceneryId between", value1, value2, "sceneryid");
             return (Criteria) this;
         }
 
-        public Criteria andExaminerIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("examiner_id not between", value1, value2, "examinerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIsNull() {
-            addCriterion("state is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateEqualTo(String value) {
-            addCriterion("state =", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotEqualTo(String value) {
-            addCriterion("state <>", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThan(String value) {
-            addCriterion("state >", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThanOrEqualTo(String value) {
-            addCriterion("state >=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThan(String value) {
-            addCriterion("state <", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThanOrEqualTo(String value) {
-            addCriterion("state <=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLike(String value) {
-            addCriterion("state like", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotLike(String value) {
-            addCriterion("state not like", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIn(List<String> values) {
-            addCriterion("state in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotIn(List<String> values) {
-            addCriterion("state not in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateBetween(String value1, String value2) {
-            addCriterion("state between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotBetween(String value1, String value2) {
-            addCriterion("state not between", value1, value2, "state");
+        public Criteria andSceneryidNotBetween(Integer value1, Integer value2) {
+            addCriterion("sceneryId not between", value1, value2, "sceneryid");
             return (Criteria) this;
         }
 

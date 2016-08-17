@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.tss.dao.PerformerMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.tss.entity.Performer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="performer_name" property="performerName" jdbcType="VARCHAR" />
+    <result column="program_name" property="programName" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="member" property="member" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.PerformerWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, performer_name, program_name, time, site_id, location, price, member, deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, summary
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.scau.tss.entity.PerformerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from performer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.PerformerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from performer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from performer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from performer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.tss.entity.PerformerExample" >
+    delete from performer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.tss.entity.PerformerWithBLOBs" >
+    insert into performer (id, performer_name, program_name, 
+      time, site_id, location, 
+      price, member, deleted, 
+      content, summary)
+    values (#{id,jdbcType=INTEGER}, #{performerName,jdbcType=VARCHAR}, #{programName,jdbcType=VARCHAR}, 
+      #{time,jdbcType=DATE}, #{siteId,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{member,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, 
+      #{content,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.tss.entity.PerformerWithBLOBs" >
+    insert into performer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="performerName != null" >
+        performer_name,
+      </if>
+      <if test="programName != null" >
+        program_name,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="member != null" >
+        member,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="performerName != null" >
+        #{performerName,jdbcType=VARCHAR},
+      </if>
+      <if test="programName != null" >
+        #{programName,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="member != null" >
+        #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.tss.entity.PerformerExample" resultType="java.lang.Integer" >
+    select count(*) from performer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update performer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.performerName != null" >
+        performer_name = #{record.performerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.programName != null" >
+        program_name = #{record.programName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=DATE},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.member != null" >
+        member = #{record.member,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.summary != null" >
+        summary = #{record.summary,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update performer
+    set id = #{record.id,jdbcType=INTEGER},
+      performer_name = #{record.performerName,jdbcType=VARCHAR},
+      program_name = #{record.programName,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=DATE},
+      site_id = #{record.siteId,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      member = #{record.member,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      content = #{record.content,jdbcType=LONGVARCHAR},
+      summary = #{record.summary,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update performer
+    set id = #{record.id,jdbcType=INTEGER},
+      performer_name = #{record.performerName,jdbcType=VARCHAR},
+      program_name = #{record.programName,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=DATE},
+      site_id = #{record.siteId,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      member = #{record.member,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.tss.entity.PerformerWithBLOBs" >
+    update performer
+    <set >
+      <if test="performerName != null" >
+        performer_name = #{performerName,jdbcType=VARCHAR},
+      </if>
+      <if test="programName != null" >
+        program_name = #{programName,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="member != null" >
+        member = #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scau.tss.entity.PerformerWithBLOBs" >
+    update performer
+    set performer_name = #{performerName,jdbcType=VARCHAR},
+      program_name = #{programName,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE},
+      site_id = #{siteId,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      member = #{member,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      content = #{content,jdbcType=LONGVARCHAR},
+      summary = #{summary,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.tss.entity.Performer" >
+    update performer
+    set performer_name = #{performerName,jdbcType=VARCHAR},
+      program_name = #{programName,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE},
+      site_id = #{siteId,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      member = #{member,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

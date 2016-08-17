@@ -7,7 +7,7 @@ public class Complaint {
 
     private String title;
 
-    private String touristId;
+    private Integer touristId;
 
     private Date times;
 
@@ -15,11 +15,11 @@ public class Complaint {
 
     private Integer access;
 
-    private String examinerId;
+    private Integer examinerId;
 
-    private String managerId;
+    private Integer managerId;
 
-    private String resultId;
+    private Integer resultId;
 
     private Integer resId;
 
@@ -43,12 +43,12 @@ public class Complaint {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getTouristId() {
+    public Integer getTouristId() {
         return touristId;
     }
 
-    public void setTouristId(String touristId) {
-        this.touristId = touristId == null ? null : touristId.trim();
+    public void setTouristId(Integer touristId) {
+        this.touristId = touristId;
     }
 
     public Date getTimes() {
@@ -75,28 +75,28 @@ public class Complaint {
         this.access = access;
     }
 
-    public String getExaminerId() {
+    public Integer getExaminerId() {
         return examinerId;
     }
 
-    public void setExaminerId(String examinerId) {
-        this.examinerId = examinerId == null ? null : examinerId.trim();
+    public void setExaminerId(Integer examinerId) {
+        this.examinerId = examinerId;
     }
 
-    public String getManagerId() {
+    public Integer getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(String managerId) {
-        this.managerId = managerId == null ? null : managerId.trim();
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
     }
 
-    public String getResultId() {
+    public Integer getResultId() {
         return resultId;
     }
 
-    public void setResultId(String resultId) {
-        this.resultId = resultId == null ? null : resultId.trim();
+    public void setResultId(Integer resultId) {
+        this.resultId = resultId;
     }
 
     public Integer getResId() {

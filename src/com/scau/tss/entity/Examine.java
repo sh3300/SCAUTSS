@@ -3,7 +3,7 @@ package com.scau.tss.entity;
 public class Examine {
     private Integer id;
 
-    private String examinerId;
+    private Integer examinerId;
 
     private String state;
 
@@ -19,12 +19,12 @@ public class Examine {
         this.id = id;
     }
 
-    public String getExaminerId() {
+    public Integer getExaminerId() {
         return examinerId;
     }
 
-    public void setExaminerId(String examinerId) {
-        this.examinerId = examinerId == null ? null : examinerId.trim();
+    public void setExaminerId(Integer examinerId) {
+        this.examinerId = examinerId;
     }
 
     public String getState() {

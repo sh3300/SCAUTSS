@@ -13,11 +13,11 @@ public class Emergency {
 
     private Date deadLine;
 
-    private String releaserId;
+    private Integer releaserId;
 
     private String types;
 
-    private String examineId;
+    private Integer examineId;
 
     private Byte deleted;
 
@@ -61,12 +61,12 @@ public class Emergency {
         this.deadLine = deadLine;
     }
 
-    public String getReleaserId() {
+    public Integer getReleaserId() {
         return releaserId;
     }
 
-    public void setReleaserId(String releaserId) {
-        this.releaserId = releaserId == null ? null : releaserId.trim();
+    public void setReleaserId(Integer releaserId) {
+        this.releaserId = releaserId;
     }
 
     public String getTypes() {
@@ -77,12 +77,12 @@ public class Emergency {
         this.types = types == null ? null : types.trim();
     }
 
-    public String getExamineId() {
+    public Integer getExamineId() {
         return examineId;
     }
 
-    public void setExamineId(String examineId) {
-        this.examineId = examineId == null ? null : examineId.trim();
+    public void setExamineId(Integer examineId) {
+        this.examineId = examineId;
     }
 
     public Byte getDeleted() {

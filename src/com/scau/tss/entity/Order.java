@@ -1,17 +1,18 @@
 package com.scau.tss.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
     private Integer id;
 
-    private String userId;
+    private Integer userId;
 
-    private String hotelId;
+    private Integer hotelId;
 
     private Date times;
 
-    private Integer price;
+    private BigDecimal price;
 
     private Date checkIn;
 
@@ -19,7 +20,7 @@ public class Order {
 
     private Integer days;
 
-    private Long amount;
+    private Integer amount;
 
     private String types;
 
@@ -33,20 +34,20 @@ public class Order {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getHotelId() {
+    public Integer getHotelId() {
         return hotelId;
     }
 
-    public void setHotelId(String hotelId) {
-        this.hotelId = hotelId == null ? null : hotelId.trim();
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
     }
 
     public Date getTimes() {
@@ -57,11 +58,11 @@ public class Order {
         this.times = times;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -89,11 +90,11 @@ public class Order {
         this.days = days;
     }
 
-    public Long getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
