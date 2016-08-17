@@ -8,13 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="" method="post">
-  <p>用户名： <input type="text" name="account" /></p>
-  <p>密码： <input type="password" name="password" /></p>
-  <p>再次输入密码： <input type="password" name="repassword"/></p>
-  <input type="submit" value="注册" />
-</form>
-  <hr>
   <h2>添加酒店(测试)</h2>
   <form action="<c:url value="/hotel/addHotel.action" />" method="post">
 	类型：<br/>
@@ -27,6 +20,9 @@
 	<input type="text" name="roomNumber" /><br/>
 	<input type="submit" value="添加" /><br/>
   </form>
+  <hr>
+  <h2>酒店列表(测试)</h2>
+  <a href="<c:url value='/hotel/queryHotel.action' />">酒店列表(测试)</a>
   
 </body>
 </html>
