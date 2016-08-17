@@ -27,4 +27,6 @@ public interface EmergencyMapper {
     int updateByPrimaryKeySelective(Emergency record);
 
     int updateByPrimaryKey(Emergency record);
+    int emergencyCount();
+    List<Emergency> getList(@Param("start") int start ,@Param("size") int size);
 }
