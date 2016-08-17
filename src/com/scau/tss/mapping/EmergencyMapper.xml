@@ -272,4 +272,10 @@
       deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="emergencyCount" resultType="java.lang.Integer">
+select count(id) from emergency
+</select>
+<select id="getList" parameterType="java.lang.Integer" resultType="com.scau.tss.entity.Emergency">
+select id,context from emergency limit #{start},#{size} 
+</select>
 </mapper>
