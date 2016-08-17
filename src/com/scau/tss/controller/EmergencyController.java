@@ -3,7 +3,6 @@ package com.scau.tss.controller;
 import javax.annotation.Resource;
 import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.ModelAndView;
 
 import com.scau.tss.entity.Emergency;
@@ -52,7 +52,7 @@ public class EmergencyController {
 	 * 
 	 */
 	@RequestMapping("getEmergency")
-	public ModelAndView getEmergency(@PathParam("id") Integer id){
+	public ModelAndView getEmergency(@RequestParam("id") Integer id){
 		emergencyService.getEmergency(id);
 		return null;
 	}
