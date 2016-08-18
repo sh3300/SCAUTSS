@@ -16,21 +16,15 @@ public interface HotelMapper {
 
     int insertSelective(Hotel record);
 
-    List<Hotel> selectByExampleWithBLOBs(HotelExample example);
-
     List<Hotel> selectByExample(HotelExample example);
 
     Hotel selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Hotel record, @Param("example") HotelExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Hotel record, @Param("example") HotelExample example);
-
     int updateByExample(@Param("record") Hotel record, @Param("example") HotelExample example);
 
     int updateByPrimaryKeySelective(Hotel record);
-
-    int updateByPrimaryKeyWithBLOBs(Hotel record);
 
     int updateByPrimaryKey(Hotel record);
 }

@@ -12,7 +12,7 @@ public class Performer {
 
     private Date time;
 
-    private Integer siteId;
+    private Integer sceneryId;
 
     private String location;
 
@@ -54,12 +54,12 @@ public class Performer {
         this.time = time;
     }
 
-    public Integer getSiteId() {
-        return siteId;
+    public Integer getSceneryId() {
+        return sceneryId;
     }
 
-    public void setSiteId(Integer siteId) {
-        this.siteId = siteId;
+    public void setSceneryId(Integer sceneryId) {
+        this.sceneryId = sceneryId;
     }
 
     public String getLocation() {

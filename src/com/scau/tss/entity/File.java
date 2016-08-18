@@ -13,6 +13,8 @@ public class File {
 
     private Byte deleted;
 
+    private Integer complaintId;
+
     public Integer getId() {
         return id;
     }
@@ -51,5 +53,13 @@ public class File {
 
     public void setDeleted(Byte deleted) {
         this.deleted = deleted;
+    }
+
+    public Integer getComplaintId() {
+        return complaintId;
+    }
+
+    public void setComplaintId(Integer complaintId) {
+        this.complaintId = complaintId;
     }
 }

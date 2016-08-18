@@ -87,8 +87,6 @@
 	<bean class="com.scau.tss.exception.CustomExceptionResolver" />
 	<!-- 全局异常处理器 -->
 
-    <!-- 开启Annotation -->
-    <context:annotation-config/>
-    <!-- 开启Annotation -->
+
     
 </beans>

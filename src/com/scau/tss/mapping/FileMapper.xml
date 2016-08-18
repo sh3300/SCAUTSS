@@ -7,6 +7,7 @@
     <result column="times" property="times" jdbcType="DATE" />
     <result column="files_type" property="filesType" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
+    <result column="complaint_id" property="complaintId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, url, times, files_type, deleted
+    id, url, times, files_type, deleted, complaint_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.scau.tss.entity.FileExample" >
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.scau.tss.entity.File" >
     insert into files (id, url, times, 
-      files_type, deleted)
+      files_type, deleted, complaint_id
+      )
     values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{times,jdbcType=DATE}, 
-      #{filesType,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT})
+      #{filesType,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{complaintId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.File" >
     insert into files
@@ -123,6 +126,9 @@
       <if test="deleted != null" >
         deleted,
       </if>
+      <if test="complaintId != null" >
+        complaint_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -139,6 +145,9 @@
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="complaintId != null" >
+        #{complaintId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
       </if>
+      <if test="record.complaintId != null" >
+        complaint_id = #{record.complaintId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       url = #{record.url,jdbcType=VARCHAR},
       times = #{record.times,jdbcType=DATE},
       files_type = #{record.filesType,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=TINYINT}
+      deleted = #{record.deleted,jdbcType=TINYINT},
+      complaint_id = #{record.complaintId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=TINYINT},
       </if>
+      <if test="complaintId != null" >
+        complaint_id = #{complaintId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set url = #{url,jdbcType=VARCHAR},
       times = #{times,jdbcType=DATE},
       files_type = #{filesType,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=TINYINT}
+      deleted = #{deleted,jdbcType=TINYINT},
+      complaint_id = #{complaintId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

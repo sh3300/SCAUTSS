@@ -752,66 +752,6 @@ public class ComplaintExample {
             return (Criteria) this;
         }
 
-        public Criteria andFilesIdIsNull() {
-            addCriterion("files_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdIsNotNull() {
-            addCriterion("files_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdEqualTo(Integer value) {
-            addCriterion("files_id =", value, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdNotEqualTo(Integer value) {
-            addCriterion("files_id <>", value, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdGreaterThan(Integer value) {
-            addCriterion("files_id >", value, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("files_id >=", value, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdLessThan(Integer value) {
-            addCriterion("files_id <", value, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdLessThanOrEqualTo(Integer value) {
-            addCriterion("files_id <=", value, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdIn(List<Integer> values) {
-            addCriterion("files_id in", values, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdNotIn(List<Integer> values) {
-            addCriterion("files_id not in", values, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdBetween(Integer value1, Integer value2) {
-            addCriterion("files_id between", value1, value2, "filesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andFilesIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("files_id not between", value1, value2, "filesId");
-            return (Criteria) this;
-        }
-
         public Criteria andDeletedIsNull() {
             addCriterion("deleted is null");
             return (Criteria) this;

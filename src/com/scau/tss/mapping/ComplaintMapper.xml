@@ -12,7 +12,6 @@
     <result column="manager_id" property="managerId" jdbcType="INTEGER" />
     <result column="result_id" property="resultId" jdbcType="INTEGER" />
     <result column="res_id" property="resId" jdbcType="INTEGER" />
-    <result column="files_id" property="filesId" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.ComplaintWithBLOBs" extends="BaseResultMap" >
@@ -79,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, title, tourist_id, times, state, access, examiner_id, manager_id, result_id, 
-    res_id, files_id, deleted
+    res_id, deleted
   </sql>
   <sql id="Blob_Column_List" >
     content, feedback
@@ -136,13 +135,13 @@
     insert into complaint (id, title, tourist_id, 
       times, state, access, 
       examiner_id, manager_id, result_id, 
-      res_id, files_id, deleted, 
-      content, feedback)
+      res_id, deleted, content, 
+      feedback)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{touristId,jdbcType=INTEGER}, 
       #{times,jdbcType=DATE}, #{state,jdbcType=VARCHAR}, #{access,jdbcType=INTEGER}, 
       #{examinerId,jdbcType=INTEGER}, #{managerId,jdbcType=INTEGER}, #{resultId,jdbcType=INTEGER}, 
-      #{resId,jdbcType=INTEGER}, #{filesId,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT}, 
-      #{content,jdbcType=LONGVARCHAR}, #{feedback,jdbcType=LONGVARCHAR})
+      #{resId,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR}, 
+      #{feedback,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.ComplaintWithBLOBs" >
     insert into complaint
@@ -176,9 +175,6 @@
       </if>
       <if test="resId != null" >
         res_id,
-      </if>
-      <if test="filesId != null" >
-        files_id,
       </if>
       <if test="deleted != null" >
         deleted,
@@ -220,9 +216,6 @@
       </if>
       <if test="resId != null" >
         #{resId,jdbcType=INTEGER},
-      </if>
-      <if test="filesId != null" >
-        #{filesId,jdbcType=INTEGER},
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=TINYINT},
@@ -274,9 +267,6 @@
       <if test="record.resId != null" >
         res_id = #{record.resId,jdbcType=INTEGER},
       </if>
-      <if test="record.filesId != null" >
-        files_id = #{record.filesId,jdbcType=INTEGER},
-      </if>
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
       </if>
@@ -303,7 +293,6 @@
       manager_id = #{record.managerId,jdbcType=INTEGER},
       result_id = #{record.resultId,jdbcType=INTEGER},
       res_id = #{record.resId,jdbcType=INTEGER},
-      files_id = #{record.filesId,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=TINYINT},
       content = #{record.content,jdbcType=LONGVARCHAR},
       feedback = #{record.feedback,jdbcType=LONGVARCHAR}
@@ -323,7 +312,6 @@
       manager_id = #{record.managerId,jdbcType=INTEGER},
       result_id = #{record.resultId,jdbcType=INTEGER},
       res_id = #{record.resId,jdbcType=INTEGER},
-      files_id = #{record.filesId,jdbcType=INTEGER},
       deleted = #{record.deleted,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -359,9 +347,6 @@
       <if test="resId != null" >
         res_id = #{resId,jdbcType=INTEGER},
       </if>
-      <if test="filesId != null" >
-        files_id = #{filesId,jdbcType=INTEGER},
-      </if>
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=TINYINT},
       </if>
@@ -385,7 +370,6 @@
       manager_id = #{managerId,jdbcType=INTEGER},
       result_id = #{resultId,jdbcType=INTEGER},
       res_id = #{resId,jdbcType=INTEGER},
-      files_id = #{filesId,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=TINYINT},
       content = #{content,jdbcType=LONGVARCHAR},
       feedback = #{feedback,jdbcType=LONGVARCHAR}
@@ -402,7 +386,6 @@
       manager_id = #{managerId,jdbcType=INTEGER},
       result_id = #{resultId,jdbcType=INTEGER},
       res_id = #{resId,jdbcType=INTEGER},
-      files_id = #{filesId,jdbcType=INTEGER},
       deleted = #{deleted,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

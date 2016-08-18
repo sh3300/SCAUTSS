@@ -26,7 +26,7 @@ public class HotelMapperTest {
 		Hotel hotel = new Hotel();
 		hotel.setLevels(2);
 		hotel.setNames("君华大酒店");
-		hotel.setPosition("红旗大道北 99号 弘基雅居");
+//		hotel.setPosition("红旗大道北 99号 弘基雅居");
 		hotel.setRoomNumber(99);
 		hotel.setTimes(new Date());
 		hotel.setTypes("非星级");

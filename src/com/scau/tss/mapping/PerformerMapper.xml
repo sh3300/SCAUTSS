@@ -6,7 +6,7 @@
     <result column="performer_name" property="performerName" jdbcType="VARCHAR" />
     <result column="program_name" property="programName" jdbcType="VARCHAR" />
     <result column="time" property="time" jdbcType="DATE" />
-    <result column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="scenery_id" property="sceneryId" jdbcType="INTEGER" />
     <result column="location" property="location" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="member" property="member" jdbcType="VARCHAR" />
@@ -75,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, performer_name, program_name, time, site_id, location, price, member, deleted
+    id, performer_name, program_name, time, scenery_id, location, price, member, deleted
   </sql>
   <sql id="Blob_Column_List" >
     content, summary
@@ -130,11 +130,11 @@
   </delete>
   <insert id="insert" parameterType="com.scau.tss.entity.PerformerWithBLOBs" >
     insert into performer (id, performer_name, program_name, 
-      time, site_id, location, 
+      time, scenery_id, location, 
       price, member, deleted, 
       content, summary)
     values (#{id,jdbcType=INTEGER}, #{performerName,jdbcType=VARCHAR}, #{programName,jdbcType=VARCHAR}, 
-      #{time,jdbcType=DATE}, #{siteId,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
+      #{time,jdbcType=DATE}, #{sceneryId,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{member,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, 
       #{content,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR})
   </insert>
@@ -153,8 +153,8 @@
       <if test="time != null" >
         time,
       </if>
-      <if test="siteId != null" >
-        site_id,
+      <if test="sceneryId != null" >
+        scenery_id,
       </if>
       <if test="location != null" >
         location,
@@ -188,8 +188,8 @@
       <if test="time != null" >
         #{time,jdbcType=DATE},
       </if>
-      <if test="siteId != null" >
-        #{siteId,jdbcType=INTEGER},
+      <if test="sceneryId != null" >
+        #{sceneryId,jdbcType=INTEGER},
       </if>
       <if test="location != null" >
         #{location,jdbcType=VARCHAR},
@@ -232,8 +232,8 @@
       <if test="record.time != null" >
         time = #{record.time,jdbcType=DATE},
       </if>
-      <if test="record.siteId != null" >
-        site_id = #{record.siteId,jdbcType=INTEGER},
+      <if test="record.sceneryId != null" >
+        scenery_id = #{record.sceneryId,jdbcType=INTEGER},
       </if>
       <if test="record.location != null" >
         location = #{record.location,jdbcType=VARCHAR},
@@ -264,7 +264,7 @@
       performer_name = #{record.performerName,jdbcType=VARCHAR},
       program_name = #{record.programName,jdbcType=VARCHAR},
       time = #{record.time,jdbcType=DATE},
-      site_id = #{record.siteId,jdbcType=INTEGER},
+      scenery_id = #{record.sceneryId,jdbcType=INTEGER},
       location = #{record.location,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       member = #{record.member,jdbcType=VARCHAR},
@@ -281,7 +281,7 @@
       performer_name = #{record.performerName,jdbcType=VARCHAR},
       program_name = #{record.programName,jdbcType=VARCHAR},
       time = #{record.time,jdbcType=DATE},
-      site_id = #{record.siteId,jdbcType=INTEGER},
+      scenery_id = #{record.sceneryId,jdbcType=INTEGER},
       location = #{record.location,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       member = #{record.member,jdbcType=VARCHAR},
@@ -302,8 +302,8 @@
       <if test="time != null" >
         time = #{time,jdbcType=DATE},
       </if>
-      <if test="siteId != null" >
-        site_id = #{siteId,jdbcType=INTEGER},
+      <if test="sceneryId != null" >
+        scenery_id = #{sceneryId,jdbcType=INTEGER},
       </if>
       <if test="location != null" >
         location = #{location,jdbcType=VARCHAR},
@@ -331,7 +331,7 @@
     set performer_name = #{performerName,jdbcType=VARCHAR},
       program_name = #{programName,jdbcType=VARCHAR},
       time = #{time,jdbcType=DATE},
-      site_id = #{siteId,jdbcType=INTEGER},
+      scenery_id = #{sceneryId,jdbcType=INTEGER},
       location = #{location,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       member = #{member,jdbcType=VARCHAR},
@@ -345,7 +345,7 @@
     set performer_name = #{performerName,jdbcType=VARCHAR},
       program_name = #{programName,jdbcType=VARCHAR},
       time = #{time,jdbcType=DATE},
-      site_id = #{siteId,jdbcType=INTEGER},
+      scenery_id = #{sceneryId,jdbcType=INTEGER},
       location = #{location,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       member = #{member,jdbcType=VARCHAR},

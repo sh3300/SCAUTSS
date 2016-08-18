@@ -1,8 +1,6 @@
 package com.scau.tss.entity;
 
 public class Manager {
-    private Integer id;
-
     private String workId;
 
     private String password;
@@ -12,14 +10,6 @@ public class Manager {
     private String state;
 
     private Byte deleted;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getWorkId() {
         return workId;

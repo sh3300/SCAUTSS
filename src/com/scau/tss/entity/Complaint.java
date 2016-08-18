@@ -23,8 +23,6 @@ public class Complaint {
 
     private Integer resId;
 
-    private Integer filesId;
-
     private Byte deleted;
 
     public Integer getId() {
@@ -105,14 +103,6 @@ public class Complaint {
 
     public void setResId(Integer resId) {
         this.resId = resId;
-    }
-
-    public Integer getFilesId() {
-        return filesId;
-    }
-
-    public void setFilesId(Integer filesId) {
-        this.filesId = filesId;
     }
 
     public Byte getDeleted() {

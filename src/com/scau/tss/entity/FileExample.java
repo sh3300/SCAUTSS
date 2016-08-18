@@ -451,6 +451,66 @@ public class FileExample {
             addCriterion("deleted not between", value1, value2, "deleted");
             return (Criteria) this;
         }
+
+        public Criteria andComplaintIdIsNull() {
+            addCriterion("complaint_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdIsNotNull() {
+            addCriterion("complaint_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdEqualTo(Integer value) {
+            addCriterion("complaint_id =", value, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdNotEqualTo(Integer value) {
+            addCriterion("complaint_id <>", value, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdGreaterThan(Integer value) {
+            addCriterion("complaint_id >", value, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("complaint_id >=", value, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdLessThan(Integer value) {
+            addCriterion("complaint_id <", value, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdLessThanOrEqualTo(Integer value) {
+            addCriterion("complaint_id <=", value, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdIn(List<Integer> values) {
+            addCriterion("complaint_id in", values, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdNotIn(List<Integer> values) {
+            addCriterion("complaint_id not in", values, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdBetween(Integer value1, Integer value2) {
+            addCriterion("complaint_id between", value1, value2, "complaintId");
+            return (Criteria) this;
+        }
+
+        public Criteria andComplaintIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("complaint_id not between", value1, value2, "complaintId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

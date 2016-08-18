@@ -7,11 +7,17 @@ public class Scenery {
 
     private Double price;
 
-    private String address;
-
     private String tell;
 
     private Byte deleted;
+
+    private String province;
+
+    private String city;
+
+    private String district;
+
+    private String detailedAddress;
 
     public Integer getId() {
         return id;
@@ -37,14 +43,6 @@ public class Scenery {
         this.price = price;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
     public String getTell() {
         return tell;
     }
@@ -59,5 +57,37 @@ public class Scenery {
 
     public void setDeleted(Byte deleted) {
         this.deleted = deleted;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district == null ? null : district.trim();
+    }
+
+    public String getDetailedAddress() {
+        return detailedAddress;
+    }
+
+    public void setDetailedAddress(String detailedAddress) {
+        this.detailedAddress = detailedAddress == null ? null : detailedAddress.trim();
     }
 }

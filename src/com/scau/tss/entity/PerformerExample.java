@@ -393,63 +393,63 @@ public class PerformerExample {
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdIsNull() {
-            addCriterion("site_id is null");
+        public Criteria andSceneryIdIsNull() {
+            addCriterion("scenery_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdIsNotNull() {
-            addCriterion("site_id is not null");
+        public Criteria andSceneryIdIsNotNull() {
+            addCriterion("scenery_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdEqualTo(Integer value) {
-            addCriterion("site_id =", value, "siteId");
+        public Criteria andSceneryIdEqualTo(Integer value) {
+            addCriterion("scenery_id =", value, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdNotEqualTo(Integer value) {
-            addCriterion("site_id <>", value, "siteId");
+        public Criteria andSceneryIdNotEqualTo(Integer value) {
+            addCriterion("scenery_id <>", value, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdGreaterThan(Integer value) {
-            addCriterion("site_id >", value, "siteId");
+        public Criteria andSceneryIdGreaterThan(Integer value) {
+            addCriterion("scenery_id >", value, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("site_id >=", value, "siteId");
+        public Criteria andSceneryIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("scenery_id >=", value, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdLessThan(Integer value) {
-            addCriterion("site_id <", value, "siteId");
+        public Criteria andSceneryIdLessThan(Integer value) {
+            addCriterion("scenery_id <", value, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdLessThanOrEqualTo(Integer value) {
-            addCriterion("site_id <=", value, "siteId");
+        public Criteria andSceneryIdLessThanOrEqualTo(Integer value) {
+            addCriterion("scenery_id <=", value, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdIn(List<Integer> values) {
-            addCriterion("site_id in", values, "siteId");
+        public Criteria andSceneryIdIn(List<Integer> values) {
+            addCriterion("scenery_id in", values, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdNotIn(List<Integer> values) {
-            addCriterion("site_id not in", values, "siteId");
+        public Criteria andSceneryIdNotIn(List<Integer> values) {
+            addCriterion("scenery_id not in", values, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdBetween(Integer value1, Integer value2) {
-            addCriterion("site_id between", value1, value2, "siteId");
+        public Criteria andSceneryIdBetween(Integer value1, Integer value2) {
+            addCriterion("scenery_id between", value1, value2, "sceneryId");
             return (Criteria) this;
         }
 
-        public Criteria andSiteIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("site_id not between", value1, value2, "siteId");
+        public Criteria andSceneryIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("scenery_id not between", value1, value2, "sceneryId");
             return (Criteria) this;
         }
 

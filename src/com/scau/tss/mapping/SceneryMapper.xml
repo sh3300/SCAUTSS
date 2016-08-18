@@ -5,9 +5,12 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DOUBLE" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="tell" property="tell" jdbcType="VARCHAR" />
     <result column="deleted" property="deleted" jdbcType="TINYINT" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="detailed_address" property="detailedAddress" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.scau.tss.entity.SceneryWithBLOBs" extends="BaseResultMap" >
     <result column="info" property="info" jdbcType="LONGVARCHAR" />
@@ -72,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, price, address, tell, deleted
+    id, name, price, tell, deleted, province, city, district, detailed_address
   </sql>
   <sql id="Blob_Column_List" >
     info, url
@@ -127,10 +130,12 @@
   </delete>
   <insert id="insert" parameterType="com.scau.tss.entity.SceneryWithBLOBs" >
     insert into scenery (id, name, price, 
-      address, tell, deleted, 
+      tell, deleted, province, 
+      city, district, detailed_address, 
       info, url)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
-      #{address,jdbcType=VARCHAR}, #{tell,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, 
+      #{tell,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{detailedAddress,jdbcType=VARCHAR}, 
       #{info,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.scau.tss.entity.SceneryWithBLOBs" >
@@ -145,14 +150,23 @@
       <if test="price != null" >
         price,
       </if>
-      <if test="address != null" >
-        address,
-      </if>
       <if test="tell != null" >
         tell,
       </if>
       <if test="deleted != null" >
         deleted,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address,
       </if>
       <if test="info != null" >
         info,
@@ -171,14 +185,23 @@
       <if test="price != null" >
         #{price,jdbcType=DOUBLE},
       </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
       <if test="tell != null" >
         #{tell,jdbcType=VARCHAR},
       </if>
       <if test="deleted != null" >
         #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        #{detailedAddress,jdbcType=VARCHAR},
       </if>
       <if test="info != null" >
         #{info,jdbcType=LONGVARCHAR},
@@ -206,14 +229,23 @@
       <if test="record.price != null" >
         price = #{record.price,jdbcType=DOUBLE},
       </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
       <if test="record.tell != null" >
         tell = #{record.tell,jdbcType=VARCHAR},
       </if>
       <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null" >
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailedAddress != null" >
+        detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
       </if>
       <if test="record.info != null" >
         info = #{record.info,jdbcType=LONGVARCHAR},
@@ -231,9 +263,12 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DOUBLE},
-      address = #{record.address,jdbcType=VARCHAR},
       tell = #{record.tell,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=TINYINT},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      detailed_address = #{record.detailedAddress,jdbcType=VARCHAR},
       info = #{record.info,jdbcType=LONGVARCHAR},
       url = #{record.url,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -245,9 +280,12 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DOUBLE},
-      address = #{record.address,jdbcType=VARCHAR},
       tell = #{record.tell,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=TINYINT}
+      deleted = #{record.deleted,jdbcType=TINYINT},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      detailed_address = #{record.detailedAddress,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,14 +299,23 @@
       <if test="price != null" >
         price = #{price,jdbcType=DOUBLE},
       </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
       <if test="tell != null" >
         tell = #{tell,jdbcType=VARCHAR},
       </if>
       <if test="deleted != null" >
         deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address = #{detailedAddress,jdbcType=VARCHAR},
       </if>
       <if test="info != null" >
         info = #{info,jdbcType=LONGVARCHAR},
@@ -283,9 +330,12 @@
     update scenery
     set name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
-      address = #{address,jdbcType=VARCHAR},
       tell = #{tell,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=TINYINT},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR},
       info = #{info,jdbcType=LONGVARCHAR},
       url = #{url,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -294,9 +344,12 @@
     update scenery
     set name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
-      address = #{address,jdbcType=VARCHAR},
       tell = #{tell,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=TINYINT}
+      deleted = #{deleted,jdbcType=TINYINT},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      detailed_address = #{detailedAddress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

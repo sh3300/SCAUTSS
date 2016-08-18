@@ -17,7 +17,13 @@ public class Hotel {
 
     private Byte deleted;
 
-    private String position;
+    private String province;
+
+    private String city;
+
+    private String district;
+
+    private String detailedAddress;
 
     public Integer getId() {
         return id;
@@ -75,11 +81,35 @@ public class Hotel {
         this.deleted = deleted;
     }
 
-    public String getPosition() {
-        return position;
+    public String getProvince() {
+        return province;
     }
 
-    public void setPosition(String position) {
-        this.position = position == null ? null : position.trim();
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district == null ? null : district.trim();
+    }
+
+    public String getDetailedAddress() {
+        return detailedAddress;
+    }
+
+    public void setDetailedAddress(String detailedAddress) {
+        this.detailedAddress = detailedAddress == null ? null : detailedAddress.trim();
     }
 }
